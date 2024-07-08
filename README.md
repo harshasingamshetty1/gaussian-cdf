@@ -1,5 +1,7 @@
 Implemented the Gaussian CDF in Solidity.
 
+Execute test suite:<br>
+`forge test -vvv` <br><br><br>
 References:<br>
 https://www.danielsoper.com/statcalc/calculator.aspx?id=53<br>
 https://www.danielsoper.com/statcalc/formulas.aspx?id=53<br>
