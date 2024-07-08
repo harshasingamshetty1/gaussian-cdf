@@ -2,11 +2,6 @@
 pragma solidity ^0.8.0;
 
 import "forge-std/console.sol";
-//0.364816*1061405429 / 1000000000000000000
-// 744597475021281610/1000000000000000000
-//365013044819096123 *604163094552370125
-//0.6041630946
-// 530158730158730159/1000000000000000000
 
 library GaussianCDF {
     int256 private constant SCALE = 1e18;
@@ -26,7 +21,7 @@ library GaussianCDF {
         return phi(z);
     }
 
-    function phi(int256 z) public pure returns (int256) {
+    function phi(int256 z) private pure returns (int256) {
         // Handle extreme values
         if (z > 8e18) return SCALE; // CDF approaches 1 for large positive z
         if (z < -8e18) return 0; // CDF approaches 0 for large negative z
@@ -84,7 +79,7 @@ library GaussianCDF {
         return z;
     }
 
-    function exp(int256 x) public pure returns (int256) {
+    function exp(int256 x) private pure returns (int256) {
         // Used Taylor Approximation
         if (x == 0) return SCALE;
 
@@ -112,7 +107,7 @@ library GaussianCDF {
         return result;
     }
 
-    function power(int256 base, int256 exponent) public pure returns (int256) {
+    function power(int256 base, int256 exponent) private pure returns (int256) {
         int256 result = SCALE;
 
         for (int256 i = 0; i < exponent; i++) {
@@ -122,3 +117,9 @@ library GaussianCDF {
         return result;
     }
 }
+// Calculations
+//0.364816*1061405429 / 1000000000000000000
+// 744597475021281610/1000000000000000000
+//365013044819096123 *604163094552370125
+//0.6041630946
+// 530158730158730159/1000000000000000000
